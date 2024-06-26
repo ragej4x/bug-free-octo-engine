@@ -1,7 +1,7 @@
 import pygame as pg
 import os, configparser as cf
 import player , animation
-import camera, stat_monitor
+import camera, stat_monitor, _map
 
 #INIT CONFIG FILE
 config = cf.ConfigParser()
@@ -19,11 +19,13 @@ clock = pg.time.Clock()
 pg.init()
 
 #CLASS OBJECTS
-MainPlayer = player.Player_class(0,0)
+MainPlayer = player.Player_class(20,20)
 #initialize camera
 Camera = camera.Camera_class(MainPlayer.x , MainPlayer.y)
 #initialize stat monitor
 monitor = stat_monitor.Monitor()
+#initialize MAP
+Map = _map.Map()
 
 def eventHandler():
     for event in pg.event.get():
@@ -43,14 +45,23 @@ def eventHandler():
     clock.tick()
 
 
-bg = pg.image.load('data/bck.png')
+#bg = pg.image.load('data/bck.png')
 while True:
     display.fill((30,30,30))
     #window.fill(0)
-    display.blit(bg , (0 - Camera.cameraX,0 - Camera.cameraY))
+    #display.blit(bg , (0 - Camera.cameraX,0 - Camera.cameraY))
+
+
     #CALL IN MAIN LOOP
+    Map.load_map_image(display, Camera.cameraX, Camera.cameraY)
+    #= 
+
+
     MainPlayer.update(display, Camera.cameraX, Camera.cameraY)
     Camera.update(MainPlayer.x, MainPlayer.y, display)
+    Map.load_base_h(MainPlayer, display, Camera.cameraX, Camera.cameraY)
     
-
+    #MOVE
+    MainPlayer.x += MainPlayer.dx
+    MainPlayer.y += MainPlayer.dy
     eventHandler()    

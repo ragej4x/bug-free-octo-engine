@@ -6,6 +6,8 @@ class Player_class():
     def __init__(self, x , y) -> None:
         self.x = x
         self.y = y
+        self.dx = 0
+        self.dy = 0
         self.speed = 3
         self.player_rect = pg.Rect((self.x, self.y, 24,24))
         
@@ -19,19 +21,22 @@ class Player_class():
 
 
     def update(self, display, cameraX, cameraY):
+        #ANIM
+        self.Animation.anim_surface.fill(0)
+        self.Animation.anim_surface.set_colorkey((0,0,0))
         #PLAYER RECT
-        self.player_rect = pg.Rect((self.x - cameraX, self.y - cameraY, 24,24))
-        pg.draw.rect(display, (200,0,0), self.player_rect )
+        self.player_rect = pg.Rect((self.x - cameraX + 5, self.y - cameraY, 13,24))
+        #pg.draw.rect(display, (200,0,0), self.player_rect )
 
-        dx = 0
-        dy = 0
+        self.dx = 0
+        self.dy = 0
 
 
         #movement
         playerMovementInp = pg.key.get_pressed()
 
         if playerMovementInp[pg.K_a]:
-            dx -= self.speed
+            self.dx -= self.speed
 
             self.left = True
             self.right = False
@@ -43,7 +48,7 @@ class Player_class():
 
 
         if playerMovementInp[pg.K_d]:
-            dx += self.speed
+            self.dx += self.speed
 
             self.left = False
             self.right = True
@@ -56,7 +61,7 @@ class Player_class():
 
 
         if playerMovementInp[pg.K_s]:
-            dy += self.speed
+            self.dy += self.speed
 
             self.left = False
             self.right = False
@@ -67,7 +72,7 @@ class Player_class():
                 self.Animation.update_run_back(self.x - cameraX, self.y - cameraY, display)
                     
         if playerMovementInp[pg.K_w]:
-            dy -= self.speed
+            self.dy -= self.speed
 
             self.left = False
             self.right = False
@@ -113,5 +118,3 @@ class Player_class():
 
         #move
         
-        self.x += dx
-        self.y += dy
