@@ -16,14 +16,13 @@ class Camera_class():
 
 
         self.speed = 1.5
-
-    def update(self, x, y):
-        rect  = pg.Rect((x , y, 5, 5))
-        center_col = pg.Rect((self.center_pos_width, self.center_pos_height , 5, 5))
         
+    def update(self, x, y, window):
+        rect  = pg.Rect((x - self.cameraX , y - self.cameraY, 24, 24))
+        center_col = pg.Rect((self.center_pos_width - 30 , self.center_pos_height - 35, 5, 5))
+
 
         if not center_col.colliderect(rect):
-
 
             angle = math.atan2(y - int(config['Display']['Height']) // 6 - self.cameraY, x - int(config['Display']['Width']) // 5.5 - self.cameraX)
             cdx = math.cos(angle)
@@ -35,4 +34,4 @@ class Camera_class():
             
 
 
-        print(rect.x , rect.y, self.cameraY, self.center_pos_height)
+        #print(rect.x , rect.y, self.cameraY, self.center_pos_height)

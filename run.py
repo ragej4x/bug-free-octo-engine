@@ -36,20 +36,14 @@ def eventHandler():
     clock.tick(60)
 
 
-
 bg = pg.image.load('data/bck.png')
 while True:
-    
     display.fill((30,30,30))
     #window.fill(0)
     display.blit(bg , (0 - Camera.cameraX,0 - Camera.cameraY))
     #CALL IN MAIN LOOP
     MainPlayer.update(display, Camera.cameraX, Camera.cameraY)
-    Camera.update(MainPlayer.x, MainPlayer.y)
-    
+    Camera.update(MainPlayer.x, MainPlayer.y, display)
     
 
-    eventHandler()
-
-    
-    
+    eventHandler()    

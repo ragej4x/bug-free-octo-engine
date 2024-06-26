@@ -18,9 +18,7 @@ class Player_class():
         self.Animation = animation.Animation_class()
 
 
-
     def update(self, display, cameraX, cameraY):
-        
         #PLAYER RECT
         self.player_rect = pg.Rect((self.x - cameraX, self.y - cameraY, 24,24))
         pg.draw.rect(display, (200,0,0), self.player_rect )
