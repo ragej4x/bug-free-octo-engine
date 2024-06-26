@@ -1,7 +1,7 @@
 import pygame as pg
 import os, configparser as cf
 import player , animation
-import camera
+import camera, stat_monitor
 
 #INIT CONFIG FILE
 config = cf.ConfigParser()
@@ -13,7 +13,7 @@ height = int(config['Display']['Height'])
 
 
 #DISPLAY
-window = pg.display.set_mode((width, height))
+window = pg.display.set_mode((width, height), vsync=True)
 display = pg.Surface((width//2.5, height//2.5))
 clock = pg.time.Clock()
 pg.init()
@@ -22,18 +22,25 @@ pg.init()
 MainPlayer = player.Player_class(0,0)
 #initialize camera
 Camera = camera.Camera_class(MainPlayer.x , MainPlayer.y)
+#initialize stat monitor
+monitor = stat_monitor.Monitor()
 
 def eventHandler():
     for event in pg.event.get():
         if event.type == pg.QUIT:
             os._exit(0)
+
     
     #USING DISPLAY SURFACE TO CREATE DYNAMIC RESOLUTION FOR PIXEL PERFECT RES
     dynamicRes = pg.transform.scale(display, (width, height))
     window.blit(dynamicRes, (0,0))
 
+
+    #MAIN SURFACE (FOR FONT AND GUI)
+    monitor.update(clock, window)
+
     pg.display.flip()
-    clock.tick(60)
+    clock.tick()
 
 
 bg = pg.image.load('data/bck.png')
