@@ -29,8 +29,6 @@ class Map:
                         self.barrier = pg.draw.rect(display, (255,255,255), (x * self.base_h_tile_size - self.base_h_tile_size - cameraX , y * self.base_h_tile_size - cameraY, self.base_h_tile_size , self.base_h_tile_size),1)
 
 
-
-
                     #COLLISION
                         if self.barrier.colliderect(MainPlayer.player_rect.x + MainPlayer.dx , MainPlayer.player_rect.y, MainPlayer.player_rect.width , MainPlayer.player_rect.height):
                             MainPlayer.dx = 0
