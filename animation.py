@@ -41,7 +41,6 @@ class Animation_class:
 
 
     def update_idle_left(self, x, y, display):
-        self.anim_surface.fill(0)
         self.anim_surface.blit(self.idle_left,(self.idle_frame[int(self.idle_left_frame_counter)], 0))
         display.blit(self.anim_surface,(x,y))
 
@@ -50,17 +49,14 @@ class Animation_class:
             self.idle_left_frame_counter = 0
 
     def update_idle_right(self, x, y, display):
-        self.anim_surface.fill(0)
         self.anim_surface.blit(self.idle_right,(self.idle_frame[int(self.idle_right_frame_counter)], 0))
         display.blit(self.anim_surface,(x,y))
-
         self.idle_right_frame_counter += self.frame_speed
         if self.idle_right_frame_counter > 4:
             self.idle_right_frame_counter = 0
 
 
     def update_idle_back(self, x, y, display):
-        self.anim_surface.fill(0)
         self.anim_surface.blit(self.idle_back,(self.idle_frame[int(self.idle_back_frame_counter)], 0))
         display.blit(self.anim_surface,(x,y))
 
@@ -70,7 +66,6 @@ class Animation_class:
 
 
     def update_idle_front(self, x, y, display):
-        self.anim_surface.fill(0)
         self.anim_surface.blit(self.idle_front,(self.idle_frame[int(self.idle_front_frame_counter)], 0))
         display.blit(self.anim_surface,(x,y))
 
@@ -81,7 +76,6 @@ class Animation_class:
 #RUN
 
     def update_run_left(self, x, y, display):
-        self.anim_surface.fill(0)
         self.anim_surface.blit(self.run_left,(self.run_frame[int(self.run_left_frame_counter)], 0))
         display.blit(self.anim_surface,(x,y))
 
@@ -90,7 +84,6 @@ class Animation_class:
             self.run_left_frame_counter = 0
 
     def update_run_right(self, x, y, display):
-        self.anim_surface.fill(0)
         self.anim_surface.blit(self.run_right,(self.run_frame[int(self.run_right_frame_counter)], 0))
         display.blit(self.anim_surface,(x,y))
 
@@ -99,7 +92,6 @@ class Animation_class:
             self.run_right_frame_counter = 0
 
     def update_run_back(self, x, y, display):
-        self.anim_surface.fill(0)
         self.anim_surface.blit(self.run_back,(self.run_frame[int(self.run_back_frame_counter)], 0))
         display.blit(self.anim_surface,(x,y))
 
@@ -108,7 +100,6 @@ class Animation_class:
             self.run_back_frame_counter = 0
 
     def update_run_front(self, x, y, display):
-        self.anim_surface.fill(0)
         self.anim_surface.blit(self.run_front,(self.run_frame[int(self.run_front_frame_counter)], 0))
         display.blit(self.anim_surface,(x,y))
 
